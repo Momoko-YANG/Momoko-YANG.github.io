@@ -9,7 +9,7 @@ app = Flask(__name__, static_folder='static')
 
 # 配置CORS - 使用flask-cors库，移除自定义中间件
 CORS(app, 
-     origins=["*"],  # 允许所有来源
+     origins=["https://momoko-yang.github.io"],  
      methods=["GET", "POST", "OPTIONS"],
      allow_headers=["Content-Type", "Authorization", "X-Requested-With", "Accept"],
      expose_headers=["Content-Type", "X-Total-Count"],
