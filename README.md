@@ -103,65 +103,6 @@ docker-compose -f docker-compose.prod.yml up -d
 ### 在线访问
 直接访问：https://momoko-yang.github.io
 
-### 📖 详细文档
-查看 [完整文档](DOCUMENTATION.md) 获取详细的配置、部署和故障排除指南。
-
----
-
-## 🛠️ 技术栈
-
-### 前端技术
-- **HTML5** - 页面结构
-- **CSS3** - 样式设计和动画效果
-- **JavaScript ES6+** - 现代JavaScript交互逻辑
-- **响应式设计** - 多设备适配
-
-### AI集成
-- **OpenAI GPT-4o-mini** - 智能对话模型
-- **Flask** - 后端API服务
-- **CORS** - 跨域请求处理
-- **智能提示词工程** - 优化的系统提示词
-
-### 部署平台
-- **GitHub Pages** - 静态网站托管
-- **Docker** - 容器化部署
-- **云平台** - 后端API部署
-
----
-
-## 📁 项目结构
-
-```
-Momoko-YANG.github.io/
-├── index.html                    # 主页面
-├── website.py                    # Flask后端服务器
-├── start.py                      # 服务器启动脚本
-├── setup_env.py                  # 环境配置脚本
-├── requirements.txt              # Python依赖
-├── env_example.txt               # 环境变量示例
-├── static/                       # 静态资源
-│   ├── css/                     # 样式文件
-│   ├── js/                      # JavaScript文件
-│   │   ├── chatbot_optimized.js # 聊天机器人核心功能
-│   │   ├── script.js            # 网站基本功能
-│   │   └── config.js            # 配置文件
-│   ├── img/                     # 图片资源
-│   ├── fonts/                   # 字体文件
-│   ├── files/                   # 其他文件
-│   └── svg/                     # SVG图标
-├── docker-compose.yaml          # Docker开发配置
-├── docker-compose.prod.yml      # Docker生产配置
-├── Dockerfile                   # Docker镜像配置
-├── Caddyfile                    # Web服务器配置
-├── deploy.sh                    # Docker部署脚本
-├── deploy-github.sh             # GitHub Pages部署脚本
-├── .github/workflows/           # GitHub Actions配置
-├── DOCUMENTATION.md             # 完整技术文档
-└── README.md                    # 项目说明
-```
-
----
-
 ## 🤖 AI聊天功能
 
 ### 功能特点
@@ -226,25 +167,6 @@ Momoko-YANG.github.io/
 
 ---
 
-## 📝 更新日志
-
-### v2.0.0 (2024-12-19)
-- ⚡ **快速回复优化**：实现本地预设内容优先显示
-- 🎯 **提示词优化**：为大模型设置简洁高效的提示词
-- 🔧 **代码重构**：优化代码结构，提升性能
-- 📁 **文件清理**：删除冗余文件，保持项目整洁
-- 🌍 **多语言增强**：改进语言检测和回复质量
-- 💬 **用户体验**：优化聊天界面和交互效果
-
-### v1.0.0 (2024-12-19)
-- ✨ 基于开源项目创建个人简历网站
-- 🔒 添加简历访问密码保护功能
-- 🤖 集成GPT-4o-mini AI聊天助手
-- 🌍 支持多语言对话
-- 📱 响应式设计优化
-
----
-
 ## 🤝 贡献指南
 
 欢迎提交Issue和Pull Request！
@@ -260,14 +182,6 @@ Momoko-YANG.github.io/
 ## 📄 许可证
 
 本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
-
----
-
-## 📞 联系方式
-
-- **GitHub**: [@Momoko-YANG](https://github.com/Momoko-YANG)
-- **网站**: https://momoko-yang.github.io
-- **邮箱**: yangmengyuan1215@gmail.com
 
 ---
 
