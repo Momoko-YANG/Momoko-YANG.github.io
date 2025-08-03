@@ -1254,13 +1254,30 @@ Loves life, enjoys sports and food! ✨`,
     }
 
     async callBackendAPI(message) {
-        const apiUrl = window.appConfig?.apiUrl || 'https://momoko-yang-github-io.onrender.com/api/chat';
+        let apiUrl = window.appConfig?.apiUrl || 'http://127.0.0.1:5000/api/chat';
+        
+        // 强制修复URL - 确保使用正确的API路径
+        if (apiUrl.includes('momoko-yang-github-io.onrender.com') && !apiUrl.includes('/api/chat')) {
+            apiUrl = 'https://momoko-yang-github-io.onrender.com/api/chat';
+            console.log('🔧 强制修复API URL:', apiUrl);
+        }
         
         console.log('🔗 当前API配置:', {
             apiUrl: apiUrl,
             model: CONSTANTS.MODELS.GPT4O_MINI,
-            disableBackendAPI: window.appConfig?.disableBackendAPI
+            disableBackendAPI: window.appConfig?.disableBackendAPI,
+            appConfig: window.appConfig,
+            configLoaded: !!window.appConfig
         });
+        
+        // 添加URL验证
+        if (apiUrl && !apiUrl.includes('/api/chat')) {
+            console.error('❌ API URL格式错误:', apiUrl);
+            console.error('   应该包含 /api/chat 路径');
+            // 强制修复
+            apiUrl = apiUrl.replace(/\/$/, '') + '/api/chat';
+            console.log('🔧 自动修复API URL:', apiUrl);
+        }
         
         if (!apiUrl || window.appConfig?.disableBackendAPI) {
             console.log('❌ 后端API未配置或已禁用');
@@ -1269,21 +1286,29 @@ Loves life, enjoys sports and food! ✨`,
 
         try {
             console.log('🤖 调用 gpt-4o-mini (固定token: 400)');
+            console.log('🌐 实际请求URL:', apiUrl);
             
             const response = await fetch(apiUrl, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                mode: 'cors', // 明确指定CORS模式
+                credentials: 'omit', // 不发送cookies
                 body: JSON.stringify({
                     message: message,
                     model: CONSTANTS.MODELS.GPT4O_MINI,
                     max_tokens: 400,  // 使用固定的400 token
                     temperature: 0.7
-                }),
-                timeout: CONSTANTS.TIMING.API_TIMEOUT
+                })
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                const errorText = await response.text();
+                console.error('❌ HTTP错误响应:', response.status, errorText);
+                console.error('❌ 请求URL:', apiUrl);
+                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
             }
 
             const data = await response.json();
@@ -1301,6 +1326,11 @@ Loves life, enjoys sports and food! ✨`,
             
         } catch (error) {
             console.log(`❌ API调用失败: ${error.message}`);
+            console.log(`❌ 请求URL: ${apiUrl}`);
+            // 添加更详细的错误信息
+            if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                console.error('🌐 网络连接错误，可能是CORS问题或服务器未启动');
+            }
             throw error;
         }
     }
@@ -1592,5 +1622,4 @@ window.addEventListener('beforeunload', () => {
 
 // ============================================================================
 // 文件结束 Momoko AI聊天机器人速度优化版 v5.0
-
 // ============================================================================ 
