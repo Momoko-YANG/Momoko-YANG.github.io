@@ -9,10 +9,8 @@ const config = {
     
     // 生产环境 - GitHub Pages
     production: {
-        // 后端API地址 - 根据你的部署平台选择
-        apiUrl: 'https://momoko-yang-backend.onrender.com/api/chat', // Render平台
-        // apiUrl: 'https://your-app-name.railway.app/api/chat', // Railway平台
-        // apiUrl: 'https://your-app-name.herokuapp.com/api/chat', // Heroku平台
+        // 后端API地址 
+        apiUrl: 'https://momoko-yang-backend.onrender.com', // Render平台
         baseUrl: 'https://momoko-yang.github.io',
         disableBackendAPI: false // 允许尝试连接后端
     },
