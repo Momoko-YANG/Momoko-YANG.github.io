@@ -1,1 +1,52 @@
+name: Deploy to GitHub Pages
 
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Build static files
+      run: |
+        # 创建静态文件目录
+        mkdir -p dist
+        
+        # 复制静态文件
+        cp -r static dist/
+        cp index.html dist/
+        cp README.md dist/
+        cp LICENSE dist/
+        
+        # 复制必要的配置文件
+        cp static/js/config.js dist/static/js/
+        cp static/js/chatbot_optimized.js dist/static/js/
+        cp static/js/script.js dist/static/js/
+        
+        # 确保目录结构正确
+        ls -la dist/
+        ls -la dist/static/
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        force_orphan: true 
