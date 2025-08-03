@@ -1254,7 +1254,7 @@ Loves life, enjoys sports and food! ✨`,
     }
 
     async callBackendAPI(message) {
-        const apiUrl = window.appConfig?.apiUrl || 'http://127.0.0.1:5000/api/chat';
+        const apiUrl = window.appConfig?.apiUrl || 'https://momoko-yang-github-io.onrender.com/api/chat';
         
         console.log('🔗 当前API配置:', {
             apiUrl: apiUrl,
@@ -1592,4 +1592,5 @@ window.addEventListener('beforeunload', () => {
 
 // ============================================================================
 // 文件结束 Momoko AI聊天机器人速度优化版 v5.0
+
 // ============================================================================ 
