@@ -10,7 +10,7 @@ const config = {
     // 生产环境 - GitHub Pages
     production: {
         // 后端API地址 
-        apiUrl: 'https://momoko-yang-github-io.onrender.com', // Render平台
+        apiUrl: 'https://momoko-yang-github-io.onrender.com/api/chat', // Render平台
         baseUrl: 'https://momoko-yang.github.io',
         disableBackendAPI: false // 允许尝试连接后端
     },
