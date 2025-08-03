@@ -89,53 +89,6 @@ python website.py
 
 ---
 
-## 🛠️ 故障排除
-
-### 常见问题
-
-#### 1. "Failed to fetch" 错误
-**原因**：后端服务器未启动
-**解决**：
-```bash
-python start.py
-# 或
-python website.py
-```
-
-#### 2. OpenAI初始化失败
-**错误信息**：
-```
-ERROR:__main__:OpenAI客户端初始化失败: Client.__init__() got an unexpected keyword argument 'proxies'
-```
-
-**解决方案**：
-```bash
-# 重新安装OpenAI库（推荐）
-pip install --upgrade openai
-
-# 或完全重新安装
-pip uninstall openai -y
-pip install openai==1.12.0
-```
-
-#### 3. 端口被占用
-**解决**：
-```bash
-# 查找占用端口的进程
-netstat -ano | findstr :5000
-
-# 或者修改website.py中的端口
-app.run(debug=True, host='0.0.0.0', port=5001)
-```
-
-### 检查系统状态
-```bash
-# 运行统一测试工具
-python test_backend.py
-```
-
----
-
 ## 🚀 部署指南
 
 ### 选项1：静态网站托管（仅前端）
@@ -209,22 +162,6 @@ heroku config:set OPENAI_API_KEY=your-api-key
 git push heroku main
 ```
 
-### 生产环境配置
-
-#### 修改app.py
-```python
-if __name__ == '__main__':
-    # 生产环境配置
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
-```
-
-#### 环境变量
-```bash
-# 生产环境设置
-export FLASK_ENV=production
-export OPENAI_API_KEY=your-api-key
-```
-
 #### 域名和SSL
 1. **购买域名**（阿里云/腾讯云等）
 2. **配置DNS**指向服务器IP
@@ -296,54 +233,12 @@ Momoko-YANG.github.io/
 
 ---
 
-## 📊 监控和维护
-
-### 日志监控
-```bash
-# 查看容器日志
-docker-compose logs -f web
-
-# 查看应用日志
-tail -f app.log
-```
-
-### 性能优化
-- 使用Nginx作为反向代理
-- 配置CDN加速静态资源
-- 启用Gzip压缩
-
-### 备份策略
-```bash
-# 定期备份
-docker-compose exec web python backup.py
-```
-
----
-
-## 💰 成本估算
-
-### 静态托管（仅前端）
-- GitHub Pages: 免费
-- Netlify: 免费（有限制）
-
-### 完整部署
-- 云服务器: ¥50-200/月
-- 域名: ¥50-100/年
-- SSL证书: 免费（Let's Encrypt）
-
----
-
 ## 🎯 推荐方案
 
 ### 新手推荐
 1. **开发阶段**：本地运行
 2. **演示阶段**：GitHub Pages（仅前端）
 3. **正式上线**：云服务器 + Docker
-
-### 企业推荐
-1. **容器化部署**：Docker + Kubernetes
-2. **负载均衡**：Nginx + 多实例
-3. **监控告警**：Prometheus + Grafana
 
 ---
 
@@ -365,29 +260,6 @@ production: {
 
 ---
 
-## 📝 更新日志
-
-### v1.0.0 (2024-12-19)
-- ✨ 基于开源项目创建个人简历网站
-- 🔒 添加简历访问密码保护功能
-- 🤖 集成GPT-4o-mini AI聊天助手
-- 🌍 支持多语言对话
-- 📱 响应式设计优化
-
----
-
-## 🤝 贡献指南
-
-欢迎提交Issue和Pull Request！
-
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 打开 Pull Request
-
----
-
 ## 📄 许可证
 
 本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
@@ -398,25 +270,6 @@ production: {
 
 - **GitHub**: [@Momoko-YANG](https://github.com/Momoko-YANG)
 - **网站**: https://momoko-yang.github.io
-- **邮箱**: [您的邮箱地址]
+- **邮箱**: [yangmengyuan1215@gmail.com]
 
 ---
-
-## 🧹 项目清理总结
-
-### 已完成的优化
-- ✅ 删除了4个冗余的测试文件
-- ✅ 修复了代码重复问题
-- ✅ 整合了测试功能
-- ✅ 清理了缓存文件
-- ✅ 提升了代码质量和维护性
-
-### 优化效果
-- **文件数量减少**: 从 25+ 个文件减少到 20 个核心文件 (-20%)
-- **功能整合**: 测试功能统一到单个文件
-- **重复代码消除**: 修复了API密钥重复配置问题
-- **维护性提升**: 文件结构更清晰，便于维护
-
----
-
-**⭐ 如果这个项目对您有帮助，请给个Star支持一下！** 
