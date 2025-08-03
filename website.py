@@ -7,12 +7,14 @@ from openai import OpenAI
 
 app = Flask(__name__, static_folder='static')
 
-# 配置CORS - 简化配置，允许所有来源
+# 配置CORS - 使用flask-cors库，移除自定义中间件
 CORS(app, 
      origins=["*"],  # 允许所有来源
      methods=["GET", "POST", "OPTIONS"],
-     allow_headers=["Content-Type", "Authorization"],
-     supports_credentials=False  # 设置为False以避免复杂配置
+     allow_headers=["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+     expose_headers=["Content-Type", "X-Total-Count"],
+     supports_credentials=False,  # 设置为False以避免复杂配置
+     max_age=86400  # 预检请求缓存时间
 )
 
 # 配置JSON编码，确保不会对特殊字符进行HTML实体编码
@@ -23,13 +25,20 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# 全局CORS中间件 - 简化版本
-@app.after_request
-def after_request(response):
-    """为所有响应添加CORS头"""
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+# 移除重复的CORS中间件，只使用flask-cors
+# @app.after_request
+# def after_request(response):
+#     """为所有响应添加CORS头"""
+#     response.headers.add('Access-Control-Allow-Origin', '*')
+#     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+#     response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+#     return response
+
+# 添加OPTIONS请求处理
+@app.route('/api/chat', methods=['OPTIONS'])
+def handle_options():
+    """处理OPTIONS预检请求"""
+    response = jsonify({'status': 'ok'})
     return response
 
 # 配置API密钥
@@ -523,6 +532,12 @@ def health_check():
         'openai_configured': openai_client is not None
     })
 
+@app.route('/api/health', methods=['OPTIONS'])
+def handle_health_options():
+    """处理健康检查OPTIONS预检请求"""
+    response = jsonify({'status': 'ok'})
+    return response
+
 @app.route('/api/models', methods=['GET'])
 def get_models():
     """获取可用模型信息"""
@@ -530,6 +545,12 @@ def get_models():
         'primary_model': 'GPT-4o-mini' if openai_client else 'Not Configured',
         'fallback_model': 'Local Response'
     })
+
+@app.route('/api/models', methods=['OPTIONS'])
+def handle_models_options():
+    """处理模型信息OPTIONS预检请求"""
+    response = jsonify({'status': 'ok'})
+    return response
 
 @app.route('/')
 def index():
