@@ -275,7 +275,7 @@ function checkPassword() {
 
     if (!currentResumeType) {
         console.error('No resume type selected');
-        errorMessage.textContent = '请先选择要下载的简历';
+        errorMessage.textContent = 'Select a resume to download';
         errorMessage.style.display = 'block';
         return;
     }
@@ -305,7 +305,7 @@ function checkPassword() {
             input.style.animation = '';
         }, 500);
 
-        errorMessage.textContent = '密码错误，请重试';
+        errorMessage.textContent = 'Incorrect password, please try again.';
         errorMessage.style.display = 'block';
         document.getElementById('passwordInput').value = '';
         document.getElementById('passwordInput').focus();
@@ -337,7 +337,7 @@ function downloadResume(resumeType) {
 function showDownloadNotification(resumeName) {
     // 创建下载成功提示
     const notification = document.createElement('div');
-    notification.textContent = `${resumeName} 开始下载`;
+    notification.textContent = `${resumeName} Start downloading`;
     notification.style.cssText = `
         position: fixed;
         top: 20px;
