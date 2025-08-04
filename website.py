@@ -198,7 +198,7 @@ Momoko について：
 7. スタイル：専門的かつフレンドリー、空虚な定型句は避ける
 """
     }
-    return prompts.get(language)
+    return prompts.get(language, prompts['en'])
 
 def clean_response(response_text, original_message, language):
     """清理AI响应"""
