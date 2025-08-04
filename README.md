@@ -8,13 +8,13 @@
 
 ## 📖 简介
 
-这是一个基于开源项目开发的个人简历网站，集成了智能AI聊天助手功能，经过全面优化和重构。
+这是一个基于开源项目开发的个人简历网站，集成了智能AI聊天助手功能，并进行优化和重构。
 
 #### 开源致谢
 本网站基于 ZYYO666 的优秀开源项目 homepage (https://github.com/ZYYO666/homepage) 进行了二次开发，在此向原作者表示衷心的感谢！开源精神让技术学习变得更加美好。
 
 #### 主要功能与特色
-在原项目基础上，进行了以下重要开发和优化：
+在原项目基础上，进行了以下开发和优化：
 
 1. **🔒 简历访问密码保护**：点击简历时增加了密码验证功能，提升了个人信息的隐私保护
 2. **🤖 智能AI聊天助手**：集成了基于GPT-4o-mini模型的智能聊天机器人，支持中日英三语对话
@@ -29,15 +29,13 @@
 
 ---
 
-### English Version
-
-This is a personal resume website developed based on an open-source project, featuring an intelligent AI chatbot with comprehensive optimization and refactoring.
+This is a personal resume website developed based on an open-source project, featuring an intelligent AI chatbot with optimization and refactoring.
 
 #### Open Source Acknowledgments
 This project is developed based on the open-source project homepage by ZYYO666, and I would like to express my sincere gratitude to the original author! The open-source spirit makes technology learning more wonderful.
 
 #### Major Features and Improvements
-Based on the original project, I made the following important developments and optimizations:
+Based on the original project, I made the following developments and optimizations:
 
 1. **🔒 Resume Access Password Protection**: Added password verification when clicking on the resume, enhancing privacy protection for personal information
 2. **🤖 Intelligent AI Chatbot**: Integrated an intelligent chatbot based on the GPT-4o-mini model, supporting multilingual conversations
@@ -89,33 +87,6 @@ This is just a personal interest and an attempt by a beginner. Through this proj
 - 感谢OpenAI提供的强大AI模型支持
 - 感谢GitHub提供的免费托管服务
 - 感谢所有为开源社区做出贡献的开发者们
-
----
-
-## 🔧 配置说明
-
-### 环境配置
-1. 复制 `env_example.txt` 为 `.env`
-2. 运行 `python setup_env.py` 配置API密钥
-3. 编辑 `static/js/config.js` 中的API地址
-
-### 自定义内容
-- 修改 `index.html` 中的个人信息
-- 更新 `static/img/` 中的图片
-- 调整 `static/css/` 中的样式
-- 在 `chatbot_optimized.js` 中自定义快速回复内容
-
----
-
-## 🤝 贡献指南
-
-欢迎提交Issue和Pull Request！
-
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 打开 Pull Request
 
 ---
 
