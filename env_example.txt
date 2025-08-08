@@ -1,7 +1,0 @@
-# OpenAI API配置
-# 请将your-api-key-here替换为您的实际API密钥
-OPENAI_API_KEY=your-api-key-here
-
-# Flask配置
-FLASK_ENV=development
-FLASK_DEBUG=True 
